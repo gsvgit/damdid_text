@@ -61,24 +61,16 @@ Also, we can see that in almost all cases the proposed solution is significantly
 \newcommand\squeryImageW{0.34}
 \newcommand\squeryImageScale{1.111}
 \begin{figure}
-    \begin{subfigure}[t]{\squeryImageW\textwidth}
-        \centering
-    \includegraphics[width=\squeryImageScale\textwidth]{figures/g1_result.eps}
-    \caption{$G_1$ query}
-    \label{fig:performance-g1}
-    \end{subfigure}%
-    \begin{subfigure}[t]{\squeryImageW\textwidth}
-        \centering
-    \includegraphics[width=\squeryImageScale\textwidth]{figures/g2_result.eps}
-    \caption{$G_2$ query}
-    \label{fig:performance-g2}
-    \end{subfigure}%
-    \begin{subfigure}[t]{\squeryImageW\textwidth}
-        \centering
-    \includegraphics[width=\squeryImageScale\textwidth]{figures/geo_result.eps}
-    \caption{$Geo$ query}
-    \label{fig:performance-geo}
-    \end{subfigure}%
+    \centering
+    \subfloat[$G_1$ query\label{fig:performance-g1}]{%
+        \includegraphics[width=\squeryImageW\textwidth]{figures/g1_result.eps}
+    }%
+    \subfloat[$G_2$ query\label{fig:performance-g2}]{%
+        \includegraphics[width=\squeryImageW\textwidth]{figures/g2_result.eps}
+    }%
+    \subfloat[$Geo$ query\label{fig:performance-geo}]{%
+        \includegraphics[width=\squeryImageW\textwidth]{figures/geo_result.eps}
+    }%
     \caption{Multiple sources CFPQ reachability results for queries related to RDF analysis.}
 \end{figure}
 
@@ -88,17 +80,14 @@ The results of the \texttt{single-source reachability} show that such queries ar
 Partial results for RPQ evaluation are presented in figures~\ref{fig:performance-reg1} and~\ref{fig:performance-reg2} for $\textit{reg}_1$ (defined in ~\ref{eqn:reg_1}) and $\textit{reg}_2$ (defined in ~\ref{eqn:reg_2}) respectively. For queries $\textit{reg}_3$ (defined in ~\ref{eqn:reg_3}) and $\textit{reg}_4$ (defined in ~\ref{eqn:reg_4}) we get similar results. Note that on \textit{geospecies} and \textit{taxonomy} graphs, the native solution failed with an \textit{OutOfMemory} exception, while our solution evaluates queries successfully. 
 
 \begin{figure}
-    \begin{subfigure}[t]{0.55\textwidth}
-        \includegraphics[width=1.0125\textwidth]{figures/reg1_rpq_result.eps}
-        \caption{$\textit{reg}_1$ query}
-        \label{fig:performance-reg1}
-    \end{subfigure}%
+    \centering
+    \subfloat[$\textit{reg}_1$ query\label{fig:performance-reg1}]{%
+        \includegraphics[width=0.55\textwidth]{figures/reg1_rpq_result.eps}
+    }%
     \hspace{-2em}
-    \begin{subfigure}[t]{0.55\textwidth}
-        \includegraphics[width=1.0125\textwidth]{figures/reg2_rpq_result.eps}
-        \caption{$\textit{reg}_2$ query}
-        \label{fig:performance-reg2}
-    \end{subfigure}%   
+    \subfloat[$\textit{reg}_2$ query\label{fig:performance-reg2}]{%
+        \includegraphics[width=0.55\textwidth]{figures/reg2_rpq_result.eps}
+    }%
     \caption{Multiple source RPQ reachability results for queries related to RDF analysis and respective query (native solution failed with OOM on last two graphs).}
 \end{figure}
 
