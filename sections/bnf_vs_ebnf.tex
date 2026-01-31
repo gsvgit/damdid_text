@@ -32,18 +32,29 @@ The experimental study was conducted as follows.
 Results presented in figures~\ref{fig:speedup-g1},~\ref{fig:speedup-g2}, and~\ref{fig:speedup-geo} for queries $G_1$, $G_2$ and \textit{Geo} respectively. 
 We can see that in almost all cases the RSM-based version is faster than the BNF-based one. While in most cases speedup is not greater than 2, in some cases it can be more than 5 (see figure~\ref{fig:speedup-geo}: graph \textit{pathways}, grammar \textit{Geo}). Average speedup over all graphs and grammars is 1.5. So we can conclude that RSM-based GLL demonstrates better performance than the BNF-based one on average. 
 
+
+
 \newcommand\speedImageW{0.34}
 \newcommand\speedImageScale{1.111}
-\begin{figure}
-    \centering
-    \subfloat[$G_1$ query\label{fig:speedup-g1}]{%
-        \includegraphics[width=\speedImageW\textwidth]{figures/g1_kotgll_result.eps}
-    }%
-    \subfloat[$G_2$ query\label{fig:speedup-g2}]{%
-        \includegraphics[width=\speedImageW\textwidth]{figures/g2_kotgll_result.eps}
-    }%
-    \subfloat[$Geo$ query\label{fig:speedup-geo}]{%
-        \includegraphics[width=\speedImageW\textwidth]{figures/geo_kotgll_result.eps}
-    }%
+
+
+\begin{figure}[htbp]%
+    \centering%
+    \begin{minipage}{\speedImageW\textwidth} % 
+        \centering % 
+        \includegraphics[width=\speedImageScale\textwidth]{figures/g1_kotgll_result.eps}
+        \small (a) $G_1$ query 
+    \end{minipage}%
+    \begin{minipage}{\speedImageW\textwidth}%
+        \centering%
+        \includegraphics[width=\speedImageScale\textwidth]{figures/g2_kotgll_result.eps}
+        \small (b) $G_2$ query
+    \end{minipage}%
+    \begin{minipage}{\speedImageW\textwidth}%
+        \centering%
+        \includegraphics[width=\speedImageScale\textwidth]{figures/geo_kotgll_result.eps}
+        \small (c) $Geo$ query
+    \end{minipage}%
     \caption{Multiple sources CFPQ reachability speedup (RSM over CFG) on RDF graphs.}
+    \label{fig:speedup}
 \end{figure}
