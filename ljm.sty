@@ -12,7 +12,7 @@
 \usepackage[T2A]{fontenc}
 \usepackage[cp1251]{inputenc}
 \usepackage[russian,english]{babel}
-\usepackage{literat}
+%\usepackage{literat}
 \usepackage{pifont}
 \usepackage{bm}
 \usepackage{array}
@@ -380,7 +380,7 @@
 \textbf{Acknowledgments.} #1
 \noindent}
 
-\renewcommand*\email[1][E-mail: ]{\begingroup\sanitize@url\@email{#1}}%
+\renewcommand*\email[1][Electronic address: ]{\begingroup\sanitize@url\@email{#1}}%
 \def\@email#1#2{%
  \endgroup
  \@AF@join{#1\href{mailto:#2}{#2}}%
