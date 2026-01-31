@@ -51,7 +51,7 @@ A descriptor represents the state of the system completely; thus computation can
 Graph-structured stack (GSS) represents a set of stacks in a compact graph-like form which enables reusing of the common parts of stacks.  We use an optimized version proposed by Afroozeh and Izmaylova in~\cite{10.1007/978-3-662-46663-6_5}. In this version, vertices identify calls, and edges contain return addresses and information about the matched part of the input. We slightly adapt GSS as follows:
 
 \begin{definition}
-    Suppose one has the graph $D=\langle V, E ,L \rangle$ and evaluates the query $\mathcal{R}=\langle \mathcal{N}, \Sigma, B, B_S, Q, Q_S \rangle$ over it. Then a \textit{Graph Structured Stack} (\textit{GSS}) is a directed edge-labelled graph $D_{\text{GSS}} = \langle V_{\text{GSS}}, E_{\text{GSS}}, L_{\text{GSS}} \rangle$, where: 
+    Suppose one has the graph $D=\langle V, E ,L \rangle$ and evaluates the query $\mathcal{R}=\langle \mathcal{N}, \Sigma, B, \allowbreak B_S, \allowbreak Q, Q_S \rangle$ over it. Then a \textit{Graph Structured Stack} (\textit{GSS}) is a directed edge-labelled graph $D_{\text{GSS}} = \langle V_{\text{GSS}}, E_{\text{GSS}}, L_{\text{GSS}} \rangle$, where: 
     \begin{itemize}
         \item $V_{\text{GSS}} \subseteq Q \times V$,
         \item $E_{\text{GSS}} \subseteq V_{\text{GSS}} \times L_{\text{GSS}} \times V_{\text{GSS}}$, $L_{\text{GSS}} \subseteq Q \times R$,        
