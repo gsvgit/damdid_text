@@ -282,7 +282,7 @@ location = {Portland, OR, USA},
 series = {GRADES-NDA'20}
 }
 
-@InProceedings{10.1007/978-3-319-91662-0_17,
+@InProceedings{santosBottomUp,
   author="Santos, Fred C.
   and Costa, Umberto S.
   and Musicante, Martin A.",
@@ -316,7 +316,7 @@ with some popular ontologies and synthetic databases to endorse the efficiency o
 our approach. The algorithm presents a cubic worst-case runtime complexity in terms
 of the number of nodes in the graph, which is an improvement over previous work.},
 booktitle = {Proceedings of the 33rd Annual ACM Symposium on Applied Computing},
-pages = {1230–1237},
+pages = {1230--1237},
 numpages = {8},
 keywords = {graph databases, context-free grammars, top-down parsing, query languages, context-free paths in graphs},
 location = {Pau, France},
@@ -350,7 +350,7 @@ series = {SAC '18}
   year={2014}
 }
 
-@InProceedings{10.1007/978-3-319-46523-4_38,
+@InProceedings{zhangCfPgRdf,
 author="Zhang, Xiaowang
 and Feng, Zhiyong
 and Wang, Xin
@@ -410,7 +410,7 @@ pages = {54--66},
 numpages = {13}
 }
 
-@InProceedings{10.1007/978-3-662-46663-6_5,
+@InProceedings{AfroozenFasterGll,
 author="Afroozeh, Ali
 and Izmaylova, Anastasia",
 editor="Franke, Bj{\"o}rn",
@@ -424,20 +424,6 @@ abstract="Generalized LL (GLL) parsing is an extension of recursivedescent (RD) 
 isbn="978-3-662-46663-6"
 }
 
-@InProceedings{10.1007/978-3-642-00982-2_35,
-author="Hemerik, Kees",
-editor="Dediu, Adrian Horia
-and Ionescu, Armand Mihai
-and Mart{\'i}n-Vide, Carlos",
-title="Towards a Taxonomy for ECFG and RRPG Parsing",
-booktitle="Language and Automata Theory and Applications",
-year="2009",
-publisher="Springer Berlin Heidelberg",
-address="Berlin, Heidelberg",
-pages="410--421",
-abstract="Extended Context-Free Grammars (ECFGs) and Regular Right-Part Grammars (RRPGs) have many applications, but they are sparsely covered in the vast literature on parsing and grammars. This paper presents first steps towards a taxonomy of parsers for ECFGs and RRPGs, in order to make this subject more accessible.",
-isbn="978-3-642-00982-2"
-}
 
 @inproceedings{DBLP:conf/edbt/TerekhovPAZG21,
   author    = {Arseniy Terekhov and
@@ -492,7 +478,7 @@ keywords = {generalised parsing, recursive descent, RNGLR and RIGLR parsing, con
 abstract = {Recursive Descent (RD) parsers are popular because their control flow follows the structure of the grammar and hence they are easy to write and to debug. However, the class of grammars which admit RD parsers is very limited. Backtracking techniques may be used to extend this class, but can have explosive runtimes and cannot deal with grammars with left recursion. Tomita-style RNGLR parsers are fully general but are based on LR techniques and do not have the direct relationship with the grammar that an RD parser has. We develop the fully general GLL parsing technique which is recursive descent-like, and has the property that the parse follows closely the structure of the grammar rules, but uses RNGLR-like machinery to handle non-determinism. The resulting recognisers run in worst-case cubic time and can be built even for left recursive grammars.}
 }
 
-@InProceedings{10.1007/978-3-030-61133-0_7,
+@InProceedings{Hellings2020ExplainingPQ,
 author="Hellings, Jelle",
 editor="Qin, Lu
 and Zhang, Wenjie
@@ -570,7 +556,7 @@ doi = {10.1145/1075382.1075387},
 abstract = {Recursive state machines (RSMs) enhance the power of ordinary state machines by allowing vertices to correspond either to ordinary states or to potentially recursive invocations of other state machines. RSMs can model the control flow in sequential imperative programs containing recursive procedure calls. They can be viewed as a visual notation extending Statecharts-like hierarchical state machines, where concurrency is disallowed but recursion is allowed. They are also related to various models of pushdown systems studied in the verification and program analysis communities.After introducing RSMs and comparing their expressiveness with other models, we focus on whether verification can be efficiently performed for RSMs. Our first goal is to examine the verification of linear time properties of RSMs. We begin this study by dealing with two key components for algorithmic analysis and model checking, namely, reachability (Is a target state reachable from initial states?) and cycle detection (Is there a reachable cycle containing an accepting state?). We show that both these problems can be solved in time O(nθ2) and space O(nθ), where n is the size of the recursive machine and θ is the maximum, over all component state machines, of the minimum of the number of entries and the number of exits of each component. From this, we easily derive algorithms for linear time temporal logic model checking with the same complexity in the model. We then turn to properties in the branching time logic CTL*, and again demonstrate a bound linear in the size of the state machine, but only for the case of RSMs with a single exit node.},
 journal = {ACM Trans. Program. Lang. Syst.},
 month = {jul},
-pages = {786–818},
+pages = {786--818},
 numpages = {33},
 keywords = {model checking, program analysis, Software verification, temporal logic, context-free languages, recursive state machines, pushdown automata}
 }
@@ -603,11 +589,11 @@ doi = {10.1145/3583660.3583664},
 abstract = {CFL/Dyck reachability is a simple graph-theoretic problem: given a CFL/Dyck language L over an alphabet Σ, a graph G = (V, E) of Σ-labeled edges, and two distinguished nodes s, t ∈ V, does there exist a path from s to t that spells out a word in L? This simple notion of language-based graph reachability serves as the algorithmic formulation of a large number of problems in diverse domains, such as graph databases and program static analysis. This paper takes an algorithmic perspective on CFL/Dyck reachability, and overviews several recent advances concerning the decidability and complexity of the problem and some its close variants, as realized in the areas of automata theory and program verification.},
 journal = {ACM SIGLOG News},
 month = {feb},
-pages = {5–25},
+pages = {5--25},
 numpages = {21}
 }
 
-@InProceedings{10.1007/978-3-030-54832-2_6,
+@InProceedings{OrachevKronecker,
 author="Orachev, Egor
 and Epelbaum, Ilya
 and Azimov, Rustam
@@ -635,7 +621,7 @@ address = {New York, NY, USA},
 url = {https://doi.org/10.1145/298514.298576},
 doi = {10.1145/298514.298576},
 booktitle = {Proceedings of the Ninth ACM SIGACT-SIGMOD-SIGART Symposium on Principles of Database Systems},
-pages = {230–242},
+pages = {230--242},
 numpages = {13},
 location = {Nashville, Tennessee, USA},
 series = {PODS '90}
@@ -652,7 +638,7 @@ url = {https://doi.org/10.1145/3241653.3241655},
 doi = {10.1145/3241653.3241655},
 abstract = {Transparent integration of a domain-specific language for specification of context-free path queries (CFPQs) into a general-purpose programming language as well as static checking of errors in queries may greatly simplify the development of applications using CFPQs. LINQ and ORM can be used for the integration, but they have issues with flexibility: query decomposition and reusing of subqueries are a challenge. Adaptation of parser combinators technique for paths querying may solve these problems. Conventional parser combinators process linear input, and only the Trails library is known to apply this technique for path querying. Trails suffers the common parser combinators issue: it does not support left-recursive grammars and also experiences problems in cycles handling. We demonstrate that it is possible to create general parser combinators for CFPQ which support arbitrary context-free grammars and arbitrary input graphs. We implement a library of such parser combinators and show that it is applicable for realistic tasks.},
 booktitle = {Proceedings of the 9th ACM SIGPLAN International Symposium on Scala},
-pages = {13–23},
+pages = {13--23},
 numpages = {11},
 keywords = {Context-Free Language Reachability, Language-Constrained Path Problem, Generalized LL, Neo4j, Context-Free Path Querying, Scala, Graph Databases, GLL, Parser Combinators},
 location = {St. Louis, MO, USA},
@@ -670,7 +656,7 @@ url = {https://doi.org/10.1145/199448.199462},
 doi = {10.1145/199448.199462},
 abstract = {The paper shows how a large class of interprocedural dataflow-analysis problems can be solved precisely in polynomial time by transforming them into a special kind of graph-reachability problem. The only restrictions are that the set of dataflow facts must be a finite set, and that the dataflow functions must distribute over the confluence operator (either union or intersection). This class of probable problems includes—but is not limited to—the classical separable problems (also known as “gen/kill” or “bit-vector” problems)—e.g., reaching definitions, available expressions, and live variables. In addition, the class of problems that our techniques handle includes many non-separable problems, including truly-live variables, copy constant propagation, and possibly-uninitialized variables.Results are reported from a preliminary experimental study of C programs (for the problem of finding possibly-uninitialized variables).},
 booktitle = {Proceedings of the 22nd ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages},
-pages = {49–61},
+pages = {49--61},
 numpages = {13},
 location = {San Francisco, California, USA},
 series = {POPL '95}
@@ -717,7 +703,7 @@ doi = {10.1145/1328897.1328460},
 abstract = {We show that the reachability problem for recursive state machines (or equivalently, pushdown systems), believed for long to have cubic worst-case complexity, can be solved in slightly subcubic time. All that is necessary for the new bound is a simple adaptation of a known technique. We also show that a better algorithm exists if the input machine does not have infinite recursive loops.},
 journal = {SIGPLAN Not.},
 month = {jan},
-pages = {159–169},
+pages = {159--169},
 numpages = {11},
 keywords = {transitive closure, pushdown systems, context-free languages, interprocedural analysis, cubic bottleneck, CFL-reachability, recursive state machines}
 }
@@ -733,7 +719,7 @@ url = {https://doi.org/10.1145/1328438.1328460},
 doi = {10.1145/1328438.1328460},
 abstract = {We show that the reachability problem for recursive state machines (or equivalently, pushdown systems), believed for long to have cubic worst-case complexity, can be solved in slightly subcubic time. All that is necessary for the new bound is a simple adaptation of a known technique. We also show that a better algorithm exists if the input machine does not have infinite recursive loops.},
 booktitle = {Proceedings of the 35th Annual ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages},
-pages = {159–169},
+pages = {159--169},
 numpages = {11},
 keywords = {pushdown systems, transitive closure, context-free languages, CFL-reachability, interprocedural analysis, recursive state machines, cubic bottleneck},
 location = {San Francisco, California, USA},
@@ -751,7 +737,7 @@ url = {https://doi.org/10.1145/3427081.3427087},
 doi = {10.1145/3427081.3427087},
 abstract = {Path queries are used to specify paths inside a data graph to match a given pattern. Query languages such as SPARQL usually include support for regular path patterns defined by means of regular expressions. Context-free path queries define a path whose language can be defined by a context-free grammar. This kind of query is interesting in practice in domains such as genetics, data science, or source code analysis. In this paper, we present a novel algorithm for context-free path query processing. Our algorithm works by looking for localized paths, allowing us to process subgraphs, in contrast to other approaches that have to process the whole graph. It also takes any context-free grammar as input, avoiding the use of normal forms that are more problematic in practice. The output of our algorithm provides enough information to reconstruct the paths matching the query. We prove the correctness of our approach and show its runtime and memory complexity. We show the viability of our approach by means of a prototype implemented in Go. We run experiments proposed in recent works, which include both synthetic and real RDF databases. Our algorithm shows some performance gains when compared with other algorithms implemented using single-thread programs.},
 booktitle = {Proceedings of the 24th Brazilian Symposium on Context-Oriented Programming and Advanced Modularity},
-pages = {40–47},
+pages = {40--47},
 numpages = {8},
 keywords = {RDF, context-free grammars, graph path queries},
 location = {Natal, Brazil},
@@ -832,7 +818,7 @@ url = {https://doi.org/10.1145/3318464.3384400},
 doi = {10.1145/3318464.3384400},
 abstract = {Context-free path querying (CFPQ) widely used for graph-structured data analysis in different areas. It is crucial to develop highly efficient algorithms for CFPQ since the size of the input data is typically large. We show how to reduce GFPQ evaluation to solving systems of matrix equations over R --- a problem for which there exist high-performance solutions. Also, we demonstrate the applicability of our approach to real-world data analysis.},
 booktitle = {Proceedings of the 2020 ACM SIGMOD International Conference on Management of Data},
-pages = {2821–2823},
+pages = {2821--2823},
 numpages = {3},
 keywords = {context-free path querying, nonlinear matrix equations, context-free grammar, graph databases, Newton's method},
 location = {Portland, OR, USA},

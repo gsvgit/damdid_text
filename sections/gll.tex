@@ -9,7 +9,7 @@ In our work, we modify the GLL-based CFPQ algorithm to handle RSMs instead of gr
 Firstly, we need a way to represent a possibly infinite set of paths of interest. 
 Note that the solution of the all-paths problem is a set of paths which can be treated as a language using the $\omega$ function (\ref{eqn:omega}). This language is a context-free language because it is an intersection of a context-free and a regular language. Thus, the paths can be represented in a way a context-free language can be represented. 
 
-The obvious way to represent a context-free language is to specify a respective context-free grammar. This way was used by Jelle Hellings in~\cite{10.1007/978-3-030-61133-0_7}: the query result is represented as a context-free grammar, and paths are extracted by generating strings.
+The obvious way to represent a context-free language is to specify a respective context-free grammar. This way was used by Jelle Hellings in~\cite{Hellings2020ExplainingPQ}: the query result is represented as a context-free grammar, and paths are extracted by generating strings.
 
 Another way is a so-called \textit{path index}: a data structure which is constructed during query processing and allows one to reconstruct paths of interest with the additional traversal. This idea is used in a wide range of graph analysis algorithms, notably by Rustam Azimov et al in~\cite{10.1145/3461837.3464513}. In our case, the path index for the graph $D=\langle V,E,L \rangle$ and the query $\mathcal{R}=\langle \mathcal{N}, \Sigma, B, B_S, Q, Q_S \rangle$ is a $\mathcal{K} \times \mathcal{K}$ square matrix $\mathcal{I}$, where $\mathcal{K} = |Q|\cdot|V|$. Columns and rows are indexed by tuples of the form $(q_i, v_j), q_i \in Q, v_j \in V$. Each cell $\mathcal{I}[(q_i,v_j),(q_l,v_k)]$ represents information about a \textit{range} $R^{q_i,v_j}_{q_l,v_k}$. \textit{Range} or a \textit{matched range} $R^{q_i,v_i}_{q_j,v_j}$ corresponds to the fact that there is a chain of transitions from the configuration $(q_i,v_i,\mathcal{S}_i)$ to the configuration $(q_j,v_j,\mathcal{S}_j)$, or $(q_i,v_i,\mathcal{S}_i) \vdash^* (q_j,v_j,\mathcal{S}_j)$. The symbol $\epsilon$ denotes the empty range: an empty sequence of configurations. Namely, $\mathcal{I}[(q_i,v_j),(q_l,v_k)]$ is a set which can contain the elements of three types:
 \begin{itemize}
@@ -32,7 +32,7 @@ In this paper, we describe a version that creates the path index, and then we sh
 
 \subsection{GLL-Based CFPQ Algorithm}
 
-In this section, we provide the detailed description of the GLL-based CFPQ algorithm that solves the \textit{multiple source all-paths} problem and handles queries in the form of RSM. We use the improved version of GLL, proposed by Afroozeh and Izmaylova in~\cite{10.1007/978-3-662-46663-6_5}, as a basis for our solution. 
+In this section, we provide the detailed description of the GLL-based CFPQ algorithm that solves the \textit{multiple source all-paths} problem and handles queries in the form of RSM. We use the improved version of GLL, proposed by Afroozeh and Izmaylova in~\cite{AfroozenFasterGll}, as a basis for our solution. 
 
 Firstly, we introduce the basic components of the algorithm.
 
@@ -48,7 +48,7 @@ Firstly, we introduce the basic components of the algorithm.
 
 A descriptor represents the state of the system completely; thus computation can be continued from the specified point without any additional information, only given a descriptor. There are two collections of descriptors in the algorithm. The first one is a collection $\mathcal{Q}$ of descriptors to handle. Each descriptor is handled once, so the second one is a collection of already handled descriptors $\mathcal{Q}_{\text{handled}}$.
 
-Graph-structured stack (GSS) represents a set of stacks in a compact graph-like form which enables reusing of the common parts of stacks.  We use an optimized version proposed by Afroozeh and Izmaylova in~\cite{10.1007/978-3-662-46663-6_5}. In this version, vertices identify calls, and edges contain return addresses and information about the matched part of the input. We slightly adapt GSS as follows:
+Graph-structured stack (GSS) represents a set of stacks in a compact graph-like form which enables reusing of the common parts of stacks.  We use an optimized version proposed by Afroozeh and Izmaylova in~\cite{AfroozenFasterGll}. In this version, vertices identify calls, and edges contain return addresses and information about the matched part of the input. We slightly adapt GSS as follows:
 
 \begin{definition}
     Suppose one has the graph $D=\langle V, E ,L \rangle$ and evaluates the query $\mathcal{R}=\langle \mathcal{N}, \Sigma, B, \allowbreak B_S, \allowbreak Q, Q_S \rangle$ over it. Then a \textit{Graph Structured Stack} (\textit{GSS}) is a directed edge-labelled graph $D_{\text{GSS}} = \langle V_{\text{GSS}}, E_{\text{GSS}}, L_{\text{GSS}} \rangle$, where: 

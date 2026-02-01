@@ -7,6 +7,7 @@ nobibnotes,%
 nofootinbib,%
 superscriptaddress,%
 noshowpacs,%
+longbibliography,%
 centertags]%
 {revtex4-2}
 \usepackage{ljm}
@@ -39,6 +40,15 @@ centertags]%
 
 \usepackage[caption=false]{subfig}
 \usepackage{wrapfig}
+
+
+% --- Fix for apsrev-generated .bbl without hyperref ---
+\makeatletter
+\providecommand{\href@noop}{}%
+\providecommand{\href}[2]{#2}%
+\providecommand{\url}[1]{#1}%
+\providecommand{\nolinkurl}[1]{#1}%
+\makeatother
 
 \begin{document}
 %
