@@ -70,19 +70,18 @@
             $
             \end{minipage}
         &%stack
-            \multirow{2}{*}[0.2cm]{
-            \begin{minipage}[t]{0.02\textwidth}
-                \resizebox{8\textwidth}{!}{
-                    \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=\nodeDistance, semithick]
-                        \node[state]         (A)              {$q_4,v_0$};
-                        \node[state]         (B) [below of=A] {$q_0,v_0$};
-                        \path (B) edge         node[right]{$q_5, \epsilon$} (A)
-                                (B) edge  [loop below] node[below]{$q_2, R^{q_0,v_0}_{q_1,v_0}$} (B) 
-                                ;
-                    \end{tikzpicture}
-                }
-            \end{minipage}
-            }
+            \multirow{2}{*}[0.2cm]{%
+            \begin{minipage}[t]{0.2\textwidth}\centering
+                \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=\nodeDistance, semithick]
+                \node[state] (A) {$q_4,v_0$};
+                \node[state] (B) [below of=A] {$q_0,v_0$};
+                \path (B) edge node[right] {$q_5,\epsilon$} (A)
+                            edge [loop below] node[below] {$q_2, R^{q_0,v_0}_{q_1,v_0}$} (B);
+                \end{tikzpicture}
+            \end{minipage}%
+}
+\\
+
         \\
         
         &
