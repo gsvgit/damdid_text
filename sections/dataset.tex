@@ -1,18 +1,18 @@
 \section{Experiment design}\label{section:dataset}
-In this section, we provide a description of graphs and queries used for the evaluation of implemented algorithms. Also, we describe common evaluation scenarios and the evaluation environment.
+In this section, we provide a description of the graphs and queries used for the evaluation of the implemented algorithms. Also, we describe common evaluation scenarios and evaluation environment.
 
-We evaluated our solution on both classical regular and context-free path queries to estimate the ability to use the proposed algorithm as a universal algorithm for a wide range of queries. 
+We evaluated our solution on both classical regular and context-free path queries to estimate the ability to use the proposed algorithm as a universal algorithm for the wide range of queries. 
 
 \subsection{Graphs}
 
 For the evaluation, we use a number of graphs from the CFPQ\_Data~\cite{cfpq-data} data set. We selected a number of graphs related to RDF analysis.
 %, as well as a number of graphs extracted from the Linux sources which related to static code analysis problems.
-A detailed description of the graphs, namely the number of vertices and edges and the number of edges labeled by tags used in queries, is in Table~\ref{tab:graphs_for_evaluation_rdf}. Here ``bt'' is an abbreviation for  \textit{broaderTransitive} relationship.
+A detailed description of the graphs, namely the number of the vertices and edges and the number of the edges labeled by tags used in the queries, is in Table~\ref{tab:graphs_for_evaluation_rdf}. Here ``bt'' is an abbreviation for \textit{broaderTransitive} relationship.
 
 %) and in table~\ref{tab:graphs_for_evaluation_stat} for static code analysis. 
 
 \begin{table}
-    \caption{RDF graphs for evaluation: number of vertices and edges, and number of edges with specific label.}
+    \caption{RDF graphs for evaluation: number of the vertices and edges, and number of the edges with specific label.}
     \label{tab:graphs_for_evaluation_rdf}
     \centering
     \scalebox{1}{
@@ -64,7 +64,7 @@ A detailed description of the graphs, namely the number of vertices and edges an
 %    \label{tab:graphs_for_evaluation_stat}
 %\end{table}
 
-For regular path queries evaluation, we used only RDF graphs because code analysis related graphs contain only two types of labels. Regular queries over such graphs are meaningless.
+To evaluate regular path queries, we used only RDF graphs, because code-analysis graphs contain only two types of labels. Regular queries over such graphs are meaningless.
 
 \subsection{Regular Queries}
 
@@ -90,7 +90,7 @@ Regular queries were generated using a well-established set of templates for RPQ
 \textit{reg}_4^{\text{N4j}} = & \texttt{()-[:a | :b]->\{1,\}()-[:c | :d]->\{1,\}()} \label{eqn:cypher_reg_4}
 \end{align}
 
-Also note that exclude \textit{go\_hierarchy} graph from evaluation because it contains only one type of edge, so it is impossible to express meaningful queries over it. 
+Also note that \textit{go\_hierarchy} graph is excluded from evaluation because it contains only one type of edge, so it is impossible to express meaningful queries over it. 
 
 \mycomment{
 \begin{table}
@@ -128,7 +128,7 @@ $Q_9^4$ & $(a \mid b \mid c \mid d)^+$        & $Q_{16}$   & $a \cdot b \cdot (c
 
 \subsection{Context-Free Queries}
 
-All queries used in our evaluation are variants of \textit{same-generation query}. For the \textit{RDF} graphs we use the same queries that were used for CFPQ algorithms evaluation in the other works~\cite{Azimov:2018:CPQ:3210259.3210264,Kuijpers:2019:ESC:3335783.3335791}: $G_1$~(\ref{eqn:g_1}), $G_2$~(\ref{eqn:g_2}), and $Geo$~(\ref{eqn:geo}). The queries are expressed as context-free grammars where $S$ is a nonterminal, \textit{subClassOf, type, broaderTransitive, }$ \overline{\textit{subClassOf}}$, $\overline{\textit{type}}$, $\overline{\textit{broaderTransitive}}$ are terminals or the labels of edges. We denote the inverse of an $x$ relation and the respective edge as $\overline{x}$.
+All queries used in our evaluation are variants of the \textit{same-generation query}. For the \textit{RDF} graphs we use the same queries that were used for CFPQ algorithms evaluation in other works~\cite{Azimov:2018:CPQ:3210259.3210264,Kuijpers:2019:ESC:3335783.3335791}: $G_1$~(\ref{eqn:g_1}), $G_2$~(\ref{eqn:g_2}), and $Geo$~(\ref{eqn:geo}). The queries are expressed as context-free grammars where $S$ is a nonterminal, \textit{subClassOf, type, broaderTransitive, }$ \overline{\textit{subClassOf}}$, $\overline{\textit{type}}$, $\overline{\textit{broaderTransitive}}$ are terminals or the labels of the edges. We denote the inverse of an $x$ relation and the respective edge as $\overline{x}$.
 
 \begin{align}
 \label{eqn:g_2}

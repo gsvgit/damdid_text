@@ -1,6 +1,6 @@
 \section{Performance of GLL on Queries in BNF and EBNF}\label{section:BFN_or_RSM}
 
-As discussed above, different ways to specify context-free grammars can be used to specify the query. The basic one is BNF (see definition~\ref{def:bnf}), the more expressive (but not more powerful) is EBNF (see definition~\ref{def:ebnf}). EBNF is not only more expressive, but potentially allows one to improve the performance of query evaluation because it avoids stack usage by replacing some recursive rules with the Kleene star. RSMs allow one to natively represent grammars in EBNF and can be handled by GLL as described in section~\ref{section:GLL-CFPQ}.
+As discussed above, different ways to specify context-free grammars can be used to specify the query. The basic one is BNF (see definition~\ref{def:bnf}), the more expressive (but not more powerful) is EBNF (see definition~\ref{def:ebnf}). EBNF is not only more expressive, but potentially allows one to improve the performance of the query evaluation because it avoids stack usage by replacing some recursive rules with the Kleene star. RSMs allow one to natively represent grammars in EBNF and can be handled by GLL as described in section~\ref{section:GLL-CFPQ}.
 
 We implemented and evaluated two versions of the GLL-based CFPQ algorithm~\cite{kotgll}: one operates with grammar in BNF, and another one operates with grammar in EBNF and utilizes RSM to represent it. At this step, we use simple data structures for graph and query representations, tuned for our algorithm. Both versions were evaluated in reachability-only mode to estimate performance differences and to choose the best one to integrate with Neo4j. 
 
@@ -19,12 +19,12 @@ To make the implementation code itself as concise and understandable as possible
 
 To assess the applicability of the proposed solution, we evaluate it on a number of real-world graphs and queries described in section~\ref{section:dataset}.
 
-We compare the performance of evaluation of queries in \textit{reachability-only} mode with different sizes of the start vertex set to estimate the speedup of  the RSM-based version relative to the BNF-based one.
+We compare the performance of the evaluation of queries in \textit{reachability-only} mode with different sizes of the start vertex set to estimate the speedup of  the RSM-based version relative to the BNF-based one.
 
 The experimental study was conducted as follows.   
 \begin{itemize}
-    \item For all graphs, queries and start vertices sets, that described in section~\ref{section:dataset}, we measure evaluation time for both versions.
-    \item Average time for each start vertices set size was calculated. So, for each graph, query, and start vertices set size we have an average time of respective query evaluation.
+    \item For all graphs, queries and start vertices sets, described in section~\ref{section:dataset}, we measure evaluation time for both versions.
+    \item Average time for each start vertices set size was calculated. Thus, for each graph, query, and start vertices set size we have an average time of respective query evaluation.
     \item Speedup as a ratio of BNF-based version evaluation time to RSM-based version evaluation time was calculated.
 \end{itemize}
 

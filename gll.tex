@@ -51,6 +51,7 @@ centertags]%
 \makeatother
 
 \begin{document}
+\nocite{REVTEX42Control}
 %
 \title{GLL-based Context-Free Path Querying for Neo4j}
 
@@ -79,7 +80,7 @@ centertags]%
 
 % --- АННОТАЦИЯ (Должна быть ДО maketitle) ---
 \begin{abstract}
-We propose a GLL-based \textit{context-free path querying} algorithm that handles queries in Extended Backus-Naur Form (EBNF) using Recursive State Machines (RSM). Utilization of EBNF allows one to combine traditional regular expressions and mutually recursive patterns in constraints natively. The proposed algorithm solves both the \textit{reachability-only} and the \textit{all-paths} problems for the \textit{all-pairs} and the \textit{multiple sources} cases. The evaluation on real-world graphs demonstrates that the utilization of RSMs increases the performance of query evaluation. Being implemented as a stored procedure for Neo4j, our solution demonstrates better performance than a similar solution for RedisGraph. The performance of our solution on regular path queries is comparable to the performance of the native Neo4j solution, and in some cases, our solution requires significantly less memory.
+We propose a GLL-based \textit{context-free path querying} algorithm that handles queries in Extended Backus-Naur Form (EBNF) using Recursive State Machines (RSM). Utilization of EBNF allows one to combine traditional regular expressions and mutually recursive patterns in constraints natively. The proposed algorithm solves both the \textit{reachability-only} and the \textit{all-paths} problems for the \textit{all-pairs} and the \textit{multiple sources} cases. The evaluation on real-world graphs demonstrates that the utilization of RSMs increases the performance of the query evaluation. Being implemented as a stored procedure for Neo4j, our solution demonstrates better performance than a similar solution for RedisGraph. The performance of our solution on the regular path queries is comparable to the performance of the native Neo4j solution, and in some cases, our solution requires significantly less memory.
 \end{abstract}
 
 % --- КЛЮЧЕВЫЕ СЛОВА ---

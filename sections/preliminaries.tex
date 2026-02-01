@@ -21,13 +21,13 @@ In the context of formal languages, we would like to remind the reader of some f
 
 In some cases $E^+$ can be used as syntactic sugar for $E \cdot E^*$. 
 
-Both regular expressions and finite automata specify regular languages and can be converted into each other. Every regular language can be specified using deterministic finite automata without $\varepsilon$-transitions. Note that regular languages form a strong subset of context-free languages.
+Both regular expressions and finite automata specify regular languages and can be converted into each other. Every regular language can be specified using deterministic finite automata without $\varepsilon$-transitions. Note that regular languages form a strong subset of the context-free languages.
 
 \begin{definition}\label{def:bnf}
 A \textit{context-free grammar} is a 4-tuple $G=\langle \Sigma, \mathcal{N}, P, S\rangle$, where $\Sigma$ is a finite set of terminals, $\mathcal{N}$ is a finite set of nonterminals, $S \in N$ is the start nonterminal, and $P$ is a set of productions. Each production has the following form: $N_i \to w$, where $N_i \in \mathcal{N}$ is the left-hand side of the production, and $w \in (\Sigma \cup \mathcal{N} )^*$ is the right-hand side of the production.    
 \end{definition}
  
- For simplicity, $S \to w_1 \mid w_2$ is used instead of $S \to w_1; S \to w_2$. Some example grammars are presented in equations~\ref{eqn:g_1},~\ref{eqn:g_2}, and~\ref{eqn:geo}. 
+ For simplicity, $S \to w_1 \mid w_2$ is used instead of $S \to w_1; S \to w_2$. Some grammar examples are presented in equations~\ref{eqn:g_1},~\ref{eqn:g_2}, and~\ref{eqn:geo}. 
 
  \begin{definition}
  A \textit{derivation step} (in the grammar $G =\langle \Sigma, \mathcal{N}, P, S\rangle$) is a production application: having a sequence of form $w_1N_0w_2$, where $N_0 \in \mathcal{N}$ and $w_1, w_2 \in (\Sigma \cup \mathcal{N})^*$, and a production $N_0 \to w_3$, one gets a sequence $w_1w_3w_2$, by replacing the left-hand side of the production with its right-hand side.    
@@ -45,9 +45,9 @@ The \textit{language specified by the context-free grammar} $G=\langle \Sigma, \
     A context-free grammar $G=\langle \Sigma, \mathcal{N}, P, S\rangle$ is in \textit{Extended Backus-Naur Form} (EBNF) if productions have the form $\mathcal{N} \to E$ where $E$ is a regular expression over $\mathcal{N} \cup \Sigma$.
 \end{definition}
 
-Grammar in EBNF can be converted to Backus-Naur Form, but such transformation requires introducing new productions and new nonterminals, which leads to a significant increase in the size of the grammar and, subsequently, poor performance of path querying algorithms.  
+Grammar in EBNF can be converted to Backus-Naur Form, but such transformation requires introducing new productions and new nonterminals, which leads to a significant increase in the size of the grammar and, subsequently, poor performance of the path querying algorithms.  
 
-We use a generalization of a \textit{parse tree} to represent the result of a query.
+We use a generalization of a \textit{parse tree} to represent the result of the query.
 
 \begin{definition}
     \textit{Parse tree} of the sequence $w$ w.r.t. the context-free grammar $G=\langle \Sigma, \mathcal{N}, P, S\rangle$ in EBNF is a rooted, node-labelled, ordered tree with the following properties.
@@ -70,6 +70,6 @@ R(I) &= \{(u,v) \mid \text{exists a path } u\pi v \text{ in } D, u \in I, \omega
 Q(I) &= \{\pi \mid \text{exists a path } u\pi v \text{ in } D, u \in I, \omega(\pi) \in \mathcal{L}  \} \label{eqn:multiple_source_all_paths}
 \end{align}
 
-Here~\ref{eqn:all_pairs_reachability} is the \textit{all-pairs reachability problem}, and~\ref{eqn:all_pairs_all_paths} is the \textit{all-pairs all-paths problem}. The additional parameter $I$ denotes the set of start vertices in~\ref{eqn:multiple_source_reachability} and~\ref{eqn:multiple_source_all_paths}. Thus~\ref{eqn:multiple_source_reachability} and~\ref{eqn:multiple_source_all_paths} --- are the \textit{multiple source reachability} and the \textit{multiple source all-paths} problems, respectively. Note that for the \textit{all-paths} problems, the result $Q$ can be an infinite set. Typically, the algorithms for these problems build a finite structure which contains all paths of interest, not the explicit set of paths. As far as the intersection of a regular and a context-free language is context-free~\cite{MR0151376}, the mentioned finite representation of the result for the reachability problem is a representation of a context-free language.
+Here~\ref{eqn:all_pairs_reachability} is the \textit{all-pairs reachability problem}, and~\ref{eqn:all_pairs_all_paths} is the \textit{all-pairs all-paths problem}. The additional parameter $I$ denotes the set of start vertices in~\ref{eqn:multiple_source_reachability} and~\ref{eqn:multiple_source_all_paths}. Thus~\ref{eqn:multiple_source_reachability} and~\ref{eqn:multiple_source_all_paths} --- are the \textit{multiple source reachability} and the \textit{multiple source all-paths} problems, respectively. Note that for the \textit{all-paths} problems, the result $Q$ can be an infinite set. Typically, the algorithms for these problems build a finite structure which contains all paths of interest, not the explicit set of the paths. As far as the intersection of a regular and a context-free language is context-free~\cite{MR0151376}, the mentioned finite representation of the result for the reachability problem is a representation of the context-free language.
 
-This work is focused on a context-free language, but the partial case --- regular languages --- is also discussed. This corresponds to two specific cases of formal language path querying (FLPQ): \textit{Context-Free Path Querying} (CFPQ) and \textit{Regular Path Querying} (RPQ).  
+This work is focused on a context-free language, but the partial case --- regular languages --- is also discussed. This corresponds to two specific cases of the formal language path querying (FLPQ): \textit{Context-Free Path Querying} (CFPQ) and \textit{Regular Path Querying} (RPQ).  
