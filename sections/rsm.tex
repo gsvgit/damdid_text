@@ -1,81 +1,97 @@
 \section{RSM-based CFPQ algorithm}\label{section:RSM}
 
-In this section, we provide necessary background on Recursive State Machines (RSM) and informally describe how RSM can be used to specify context-free constraints for path querying in graphs.
+In this section, we provide background on Recursive State Machines (RSMs) and describe informally how they can specify context-free constraints for path querying in graphs.
+Also we describe main idea behind adoption GLL for RSM-based CFPQ algorithm.
 
+\textit{Recursive state machine} or RSM~\cite{10.1145/1075382.1075387} is a way to represent context-free languages in a way resembling finite automata.
+It allows us to use a graph-based representation of the context-free languages specification and unify the processing of regular and context-free languages. 
+Moreover, RSMs provide a natural representation for grammars in Extended Backus–Naur Form (EBNF), which are often more compact and user-friendly than BNF.
 
+In our work, we modify the GLL-based CFPQ algorithm to handle RSMs instead of grammars in BNF as a query specification.
+It enables performance improvement and native handling of both context-free and regular languages.
+A detailed description of the algorithm, including formal definitions of descriptors, GSS, and correctness proofs, is beyond the scope of this paper and can be found in extended version~\cite{abzalov2023gllbasedcontextfreepathquerying}.
 
-\subsection{RSM}
+Our solution is based on the generalized LL parsing algorithm~\cite{SCOTT2010177} which was shown to generalize well to graph processing~\cite{Grigorev:2017:CPQ:3166094.3166104}.
+To generalize GLL to handle RSMs as query specification we introduce \emph{matched ranges}: each range is defined by two graph vertices (e.g., $u$ and $v$) and two RSM states (e.g., $p$ and $q$).
+A matched range of the form $(p,u),(q,v)$ indicates that there exist at least one path from $u$ to $v$ such that it forms a word is accepted by RSM when starting in state $p$ and ending in state $q$.
 
-((TODO add graphs, languages and CFPQ shortly here))
+As a result of parsing, GLL can construct a \textit{Shared Packed Parse Forest} (SPPF)~\cite{SCOTT20131828} --- a special data structure which represents all possible derivations of the input in the compressed form.
+A Shared Packed Parse Forest (SPPF) was proposed by Jan Rekers in~\cite{rekers1992parser} to represent parse forest without duplication of subtrees. Later, other versions of SPPF were introduced in different generalized parsing algorithms.
+For example, GLL can provide the result in the form of the \textit{binary subtree sets}~\cite{SCOTT201963}.
+As shown in~\cite{Grigorev:2017:CPQ:3166094.3166104}, the SPPF can finitely represent the result of an all-paths query, enabling the recovery of any concrete path.
+In our work, we employ SPPF with the following types of nodes. 
 
-\textit{Recursive state machine} or RSM~\cite{10.1145/1075382.1075387} is a way to represent context-free languages in a way resembling finite automata. It allows us to use a graph-based representation of the context-free languages specification and unify the processing of regular and context-free languages. 
-
-Thus, RSM is a set of the deterministic finite state machines without $\varepsilon$-transitions over the alphabet $\Sigma \cup Q_S$. But the computation process of RSM differs from that of DFA because it involves using a stack to handle transitions labelled with elements of $Q_S$.
-
-\subsection{RSM and GLL}
-In our work, we modify the GLL-based CFPQ algorithm to handle RSMs instead of grammars in BNF as a query specification. It enables performance improvement and native handling of both context-free and regular languages. A detailed description of the algorithm, including formal definitions of descriptors, GSS, and correctness proofs, is beyond the scope of this paper and will be presented separately. In this section, we introduce an overview of the context-free constrained path querying using RSM and the na{\"{\i}}ve computation strategy. 
-
-Our solution is based on the generalized LL parsing algorithm~\cite{SCOTT2010177} which was shown to generalize well to graph processing~\cite{Grigorev:2017:CPQ:3166094.3166104}. As a result of parsing, GLL can construct a \textit{Shared Packed Parse Forest} (SPPF)~\cite{SCOTT20131828} --- a special data structure which represents all possible derivations of the input in the compressed form. Alternatively, GLL can provide the result in the form of the \textit{binary subtree sets}~\cite{SCOTT201963}. It was shown in~\cite{Grigorev:2017:CPQ:3166094.3166104} that SPPF can be naturally used to represent the result of the query for the \textit{all-paths} problem finitely (see \ref{eqn:all_pairs_all_paths} and~\ref{eqn:multiple_source_all_paths} in the set of problems).
-
-
-((shoertly describe GLL algorithm and hw it's modified to work with RSM. Pseudiocode maybe?))
-
+\begin{itemize}
+    \item A \textit{Terminal node} to represent a matched edge label.
+    \item A \textit{Nonterminal node} to represent the root of the subtree which corresponds to paths that can be derived from the respective nonterminal.  
+    \item An \textit{Intermediate node} which corresponds to the intermediate point used to connect two matched ranges. It has exactly two children (both range nodes) and is denoted $I_{q,v}$, indicating that ranges are joined at point $(q,v)$.
+    \item A \textit{Range node} corresponds to a matched range $(p,u),(q,v)$ and is denoted $R^{p,u}_{q,v}$. It encodes all possible derivations of that range and can have arbitrarily many children of any type except range. Range nodes are reusable within the SPPF.
+    \item An \textit{Epsilon node} to represent the empty subtree in the case when nonterminal produces the empty string. 
+\end{itemize}
 
 \subsection{Example}\label{section:example_of_rsm}
+
+Let us introduce a brief example.
+Suppose we have a graph as shown in Fig.~\ref{fig:input-graph} and we wish to find all paths from $v_0$ to $v_0$ that satisfy the constraint specified by the RSM in Fig.~\ref{fig:example-rsm}.
+The RSM describes paths of the form $a^n b^n$, where $n > 0$.
+It is easy to see that there are infinitely many such paths. 
+Therefore, the resulting SPPF will contain cycles.
+
+\begin{figure}
+    \centering
+    
+    \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm, semithick]
+
+    \node[state] (A)                    {$v_0$};
+    \node[state]         (B) [right of=A] {$v_1$};
+    
+    \path (A) edge  [loop left] node {a} (A)
+                edge  [bend left] node {b} (B)
+            (B) edge  [bend left] node {b} (A);
+    \end{tikzpicture}
+
+    \caption{Input graph.}
+    \label{fig:input-graph}
+
+\end{figure}
 
 \begin{figure}
     \centering
     \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm, semithick]
-  %\tikzstyle{every state}=[fill=red,draw=none,text=white]
 
-  \node[initial,state]   (F)              {$q_4$};
-  \node[state]           (G) [right of=F] {$q_5$};
-  \node[accepting,state] (H) [right of=G] {$q_6$};
-  \node[draw=black, fit= (F) (G) (H), inner sep=0.25cm] (J) {};
-  \node[below right] at (J.north west) {S'};
+    \node[initial,state]   (F)              {$q_4$};
+    \node[state]           (G) [right of=F] {$q_5$};
+    \node[accepting,state] (H) [right of=G] {$q_6$};
+    \node[draw=black, fit= (F) (G) (H), inner sep=0.25cm] (J) {};
+    \node[below right] at (J.north west) {S'};
 
-  \path (F) edge              node {$q_0$} (G)
-        (G) edge              node {$\$$} (H); 
+    \path (F) edge              node {$q_0$} (G)
+            (G) edge              node {$\$$} (H); 
 
-  \node[initial,state] (A) [below = 2.7cm of F] {$q_0$};
-  \node[state]         (B) [right of=A] {$q_1$};
-  \node[state]         (D) [above right of=B] {$q_2$};
-  \node[accepting,state]         (C) [right of=B] {$q_3$};
-  \node [draw=black, fit= (A) (C) (D), inner sep=0.25cm] (E) {};
-  \node[below right] at (E.north west) {S};
+    \node[initial,state] (A) [below = 2.7cm of F] {$q_0$};
+    \node[state]         (B) [right of=A] {$q_1$};
+    \node[state]         (D) [above right of=B] {$q_2$};
+    \node[accepting,state]         (C) [right of=B] {$q_3$};
+    \node [draw=black, fit= (A) (C) (D), inner sep=0.25cm] (E) {};
+    \node[below right] at (E.north west) {S};
 
-  \path (A) edge              node {a} (B)
-        (B) edge              node {$q_0$} (D)
-            edge              node {b} (C)
-        (D) edge              node {b} (C);
-\end{tikzpicture}
+    \path (A) edge              node {a} (B)
+            (B) edge              node {$q_0$} (D)
+                edge              node {b} (C)
+            (D) edge              node {b} (C);
+    \end{tikzpicture}
     
     \caption{Extended RSM for grammar $S \to a \ b \mid a \ S \ b$.}
     \label{fig:example-rsm}
 \end{figure}
 
-\begin{figure}
-    \centering
+The resulting SPPF is shown in Fig.~\ref{fig:SPPF}.
+Its root is the node $R^{q_4,v_0}_{q_5,v_0}$, which indicates that it represents paths from $v_0$ to $v_0$ that can be recognized by the RSM transitioning from state $q_4$ to $q_5$.
+This transition corresponds to recognizing a word derived from the non-terminal $S$.
+The node $R^{q_0,v_0}_{q_3,v_0}$ is the entry point for a cycle.
+The node $R^{q_0,v_0}_{q_3,v_1}$ has two siblings, indicating two ways to construct the corresponding subpath.
+The first corresponds to the shortest possible path: $$v_0 \xrightarrow{a} v_0 \xrightarrow{a} v_0 \xrightarrow{b} v_1 \xrightarrow{b} v_0.$$
+The second contains the cycle mentioned above and therefore represents an infinite family of paths formed by repeatedly wrapping the shortest path with additional pairs of $a$s and $b$s.
+For example, traversing the cycle once yields the path: $$v_0 \xrightarrow{a} v_0 \xrightarrow{a} v_0 \xrightarrow{a} v_0 \xrightarrow{a} v_0 \xrightarrow{b} v_1 \xrightarrow{b} v_0 \xrightarrow{b} v_1 \xrightarrow{b} v_0.$$
 
-\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm, semithick]
-  %\tikzstyle{every state}=[fill=red,draw=none,text=white]
-
-  \node[state] (A)                    {$v_0$};
-  \node[state]         (B) [right of=A] {$v_1$};
-  
-  \path (A) edge  [loop left] node {a} (A)
-            edge  [bend left] node {b} (B)
-        (B) edge  [bend left] node {b} (A);
-\end{tikzpicture}
-
-    \caption{Input graph.}
-    \label{fig:input-graph}
-\end{figure}
-
-...
-
-Note that we have no conditions to stop computation. In our example, we can continue computation and get new paths between $v_0$ and $v_1$. Moreover, there is an infinite number of such paths. Additionally, the selection of the next step is not deterministic. One can choose the configuration $(q_0,v_0,[q_2,a,q_2,a,q_5])$ to continue computations after step~\ref{eq:naive-rsm-step-6} with a chance to fall into the infinite cycle, but choosing $(q_3,v_1,[b,a,q_2,a,q_5])$ we get a new path.
-
-\subsection{Result representation}
- ((is path index important for this work or can be ommited?))
-
+\input{texfigures/sppf}
